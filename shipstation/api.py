@@ -188,6 +188,7 @@ class ShipStationAddress(ShipStationBase):
         self.city = city
         self.state = state
         self.postal_code = postal_code
+        self.country = country
         self.phone = phone
         self.residential = residential
 
