@@ -237,6 +237,7 @@ class ShipStationOrder(ShipStationBase):
         self.customer_notes = None
         self.internal_notes = None
         self.gift = None
+        self.gift_message = None
         self.payment_method = None
         self.carrier_code = None
         self.service_code = None
@@ -462,3 +463,7 @@ class ShipStation(ShipStationBase):
             endpoint='/orders/list',
             payload=valid_parameters
         )
+
+    def delete_order(self, order_id):
+        r = requests.delete('{}/orders/{}'.format(self.url, order_id))
+        return r
