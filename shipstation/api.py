@@ -469,5 +469,13 @@ class ShipStation(ShipStationBase):
         )
 
     def delete_order(self, order_id):
-        r = requests.delete('{}/orders/{}'.format(self.url, order_id))
+        headers = {
+            'Host': 'ssapi.shipstation.com',
+        }
+        r = requests.delete('{}/orders/{}'.format(self.url, order_id),
+                            auth=(self.key, self.secret), data=None, headers=headers)
         return r
+
+    def cancel_order(self, order):
+        self.post(endpoint="/orders/createorder",
+                  data=json.dumps(order))
