@@ -237,6 +237,7 @@ class ShipStationOrder(ShipStationBase):
         self.customer_notes = None
         self.internal_notes = None
         self.gift = None
+        self.gift_message = None
         self.payment_method = None
         self.carrier_code = None
         self.service_code = None
@@ -259,6 +260,10 @@ class ShipStationOrder(ShipStationBase):
     def set_customer_details(self, username=None, email=None):
         self.customer_username = username
         self.customer_email = email
+
+    def set_gift_message(self, message):
+        self.gift = True
+        self.gift_message = message
 
     def set_shipping_address(self, shipping_address=None):
         if type(shipping_address) is not ShipStationAddress:
@@ -462,3 +467,7 @@ class ShipStation(ShipStationBase):
             endpoint='/orders/list',
             payload=valid_parameters
         )
+
+    def delete_order(self, order_id):
+        r = requests.delete('{}/orders/{}'.format(self.url, order_id))
+        return r
