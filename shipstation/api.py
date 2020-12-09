@@ -261,6 +261,10 @@ class ShipStationOrder(ShipStationBase):
         self.customer_username = username
         self.customer_email = email
 
+    def set_gift_message(self, message):
+        self.gift = True
+        self.gift_message = message
+
     def set_shipping_address(self, shipping_address=None):
         if type(shipping_address) is not ShipStationAddress:
             raise AttributeError("Should be type ShipStationAddress")
